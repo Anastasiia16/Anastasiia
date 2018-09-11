@@ -1,6 +1,5 @@
 
-1.Реалізувати добавлення і вилучення рейсів, міст, авіакомпаній;
-Додавання 
+1.Р—Р°РІРґР°РЅРЅСЏ 
 
 INSERT INTO "Flights"(flight_name,company_name,ticket_price, departure_time ,plane_model,departure_id, arrival_id ,airline_id)
 VALUES ( 'QQFFA','PK', '123','12:20','boing','2','4' ,'5');
@@ -11,7 +10,7 @@ VALUES ( 'Kiev','Ukraine', '123322','1');
 INSERT INTO "Airline"(airline_name, office_address_id, president_id,found_year  )
 VALUES ( 'KP','3', '2','2018');
 
-Вилучення 
+Г‚ГЁГ«ГіГ·ГҐГ­Г­Гї 
 
 DELETE FROM "Flights"
 WHERE (flight_name= 'QQFFA'and company_name= 'PK'and ticket_price='123'and departure_time='12:20'and plane_model= 'boing'and departure_id='2'and arrival_id='4'and airline_id='5');
@@ -22,7 +21,7 @@ WHERE ( city_name='Kiev'and country='Ukraine'and population= '123322'and mayor_i
 DELETE FROM "Airline"
 WHERE (airline_name= 'KP' and office_address_id='3' and president_id='2' and found_year='2018');
 
-2. Вивід усіх рейсів, міст, авіакомпаній;
+2. Г‚ГЁГўВіГ¤ ГіГ±ВіГµ Г°ГҐГ©Г±ВіГў, Г¬ВіГ±ГІ, Г ГўВіГ ГЄГ®Г¬ГЇГ Г­ВіГ©;
 
 
 SELECT * FROM "Flights"
@@ -36,7 +35,7 @@ ORDER BY airline_name ASC;
 
 
 
-3. Пошук по частині назві рейсу, міст, авіакомпаній;
+3. ГЏГ®ГёГіГЄ ГЇГ® Г·Г Г±ГІГЁГ­Ві Г­Г Г§ГўВі Г°ГҐГ©Г±Гі, Г¬ВіГ±ГІ, Г ГўВіГ ГЄГ®Г¬ГЇГ Г­ВіГ©;
 
 SELECT * FROM "Flights"
 WHERE flight_name LIKE 'A%'
@@ -47,7 +46,7 @@ WHERE city_name LIKE '__i%';
 SELECT * FROM "Airline"
 WHERE airline_name LIKE '____air%';
 
-4. Вивід усіх рейсів із заданого міста, в задане місто, заданої компанії, заданої марки літака;
+4. Г‚ГЁГўВіГ¤ ГіГ±ВіГµ Г°ГҐГ©Г±ВіГў ВіГ§ Г§Г Г¤Г Г­Г®ГЈГ® Г¬ВіГ±ГІГ , Гў Г§Г Г¤Г Г­ГҐ Г¬ВіГ±ГІГ®, Г§Г Г¤Г Г­Г®Вї ГЄГ®Г¬ГЇГ Г­ВіВї, Г§Г Г¤Г Г­Г®Вї Г¬Г Г°ГЄГЁ Г«ВіГІГ ГЄГ ;
 
 SELECT company_name, city_name,plane_model
 FROM (("Flights"
@@ -59,17 +58,17 @@ FROM (("Flights"
 INNER JOIN "Cities" ON "Flights".arrival_id="Cities".city_id)
 INNER JOIN "Airline" ON "Flights".airline_id="Airline".airline_id);
 
-5. Вивід марок літаків, що використовуються заданою компанією;
+5. Г‚ГЁГўВіГ¤ Г¬Г Г°Г®ГЄ Г«ВіГІГ ГЄВіГў, Г№Г® ГўГЁГЄГ®Г°ГЁГ±ГІГ®ГўГіГѕГІГјГ±Гї Г§Г Г¤Г Г­Г®Гѕ ГЄГ®Г¬ГЇГ Г­ВіВєГѕ;
 SELECT company_name, plane_model
 FROM "Flights"
 INNER JOIN "Airline" ON "Flights".airline_id="Airline".airline_id ;
-6. Вивід усіх міст, в які літає дана компанія.
+6. Г‚ГЁГўВіГ¤ ГіГ±ВіГµ Г¬ВіГ±ГІ, Гў ГїГЄВі Г«ВіГІГ Вє Г¤Г Г­Г  ГЄГ®Г¬ГЇГ Г­ВіГї.
 
 SELECT company_name, city_name
 FROM "Flights"
 INNER JOIN "Cities" ON "Flights".arrival_id="Cities".city_id ;
 
-7. Передбачити можливість сортування
+7. ГЏГҐГ°ГҐГ¤ГЎГ Г·ГЁГІГЁ Г¬Г®Г¦Г«ГЁГўВіГ±ГІГј Г±Г®Г°ГІГіГўГ Г­Г­Гї
 SELECT company_name, city_name
 FROM "Flights"
 INNER JOIN "Cities" ON "Flights".arrival_id="Cities".city_id 
