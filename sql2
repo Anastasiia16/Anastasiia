@@ -1,6 +1,6 @@
 
-1.Завдання 
-
+1.Реалізувати добавлення і вилучення рейсів, міст, авіакомпаній;
+Додавання 
 INSERT INTO "Flights"(flight_name,company_name,ticket_price, departure_time ,plane_model,departure_id, arrival_id ,airline_id)
 VALUES ( 'QQFFA','PK', '123','12:20','boing','2','4' ,'5');
 
@@ -10,7 +10,7 @@ VALUES ( 'Kiev','Ukraine', '123322','1');
 INSERT INTO "Airline"(airline_name, office_address_id, president_id,found_year  )
 VALUES ( 'KP','3', '2','2018');
 
-Âèëó÷åííÿ 
+Вилучення 
 
 DELETE FROM "Flights"
 WHERE (flight_name= 'QQFFA'and company_name= 'PK'and ticket_price='123'and departure_time='12:20'and plane_model= 'boing'and departure_id='2'and arrival_id='4'and airline_id='5');
@@ -21,8 +21,7 @@ WHERE ( city_name='Kiev'and country='Ukraine'and population= '123322'and mayor_i
 DELETE FROM "Airline"
 WHERE (airline_name= 'KP' and office_address_id='3' and president_id='2' and found_year='2018');
 
-2. Âèâ³ä óñ³õ ðåéñ³â, ì³ñò, àâ³àêîìïàí³é;
-
+2. Вивід усіх рейсів, міст, авіакомпаній;
 
 SELECT * FROM "Flights"
 ORDER BY flight_name ASC;
@@ -33,10 +32,7 @@ ORDER BY city_name ASC;
 SELECT * FROM "Airline"
 ORDER BY airline_name ASC;
 
-
-
-3. Ïîøóê ïî ÷àñòèí³ íàçâ³ ðåéñó, ì³ñò, àâ³àêîìïàí³é;
-
+3. Пошук по частині назві рейсу, міст, авіакомпаній;
 SELECT * FROM "Flights"
 WHERE flight_name LIKE 'A%'
 
@@ -46,7 +42,7 @@ WHERE city_name LIKE '__i%';
 SELECT * FROM "Airline"
 WHERE airline_name LIKE '____air%';
 
-4. Âèâ³ä óñ³õ ðåéñ³â ³ç çàäàíîãî ì³ñòà, â çàäàíå ì³ñòî, çàäàíî¿ êîìïàí³¿, çàäàíî¿ ìàðêè ë³òàêà;
+4. Вивід усіх рейсів із заданого міста, в задане місто, заданої компанії, заданої марки літака;
 
 SELECT company_name, city_name,plane_model
 FROM (("Flights"
@@ -58,17 +54,20 @@ FROM (("Flights"
 INNER JOIN "Cities" ON "Flights".arrival_id="Cities".city_id)
 INNER JOIN "Airline" ON "Flights".airline_id="Airline".airline_id);
 
-5. Âèâ³ä ìàðîê ë³òàê³â, ùî âèêîðèñòîâóþòüñÿ çàäàíîþ êîìïàí³ºþ;
+5. Вивід марок літаків, що використовуються заданою компанією;
+
 SELECT company_name, plane_model
 FROM "Flights"
 INNER JOIN "Airline" ON "Flights".airline_id="Airline".airline_id ;
-6. Âèâ³ä óñ³õ ì³ñò, â ÿê³ ë³òàº äàíà êîìïàí³ÿ.
+
+6. Вивід усіх міст, в які літає дана компанія.
 
 SELECT company_name, city_name
 FROM "Flights"
 INNER JOIN "Cities" ON "Flights".arrival_id="Cities".city_id ;
 
-7. Ïåðåäáà÷èòè ìîæëèâ³ñòü ñîðòóâàííÿ
+7. Передбачити можливість сортування
+
 SELECT company_name, city_name
 FROM "Flights"
 INNER JOIN "Cities" ON "Flights".arrival_id="Cities".city_id 
